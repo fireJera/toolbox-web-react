@@ -47,7 +47,7 @@ export default function JsonTool() {
             onScroll={handleScroll}
             className="text-area"
             placeholder="Enter JSON here"
-            style={{ whiteSpace: 'pre-wrap', height: '100%' }} // 处理换行
+            style={{ whiteSpace: 'pre-wrap', height: '100vh' }} // 处理换行
           />
         </div>
       </div>

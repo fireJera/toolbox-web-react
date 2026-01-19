@@ -1,6 +1,7 @@
 .textarea-container {
   position: relative;
   display: flex;
+  height: 100%;
   /* ... 其他样式 */
 }
 

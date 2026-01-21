@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { formatJson } from '@/tools/json/formatter';
-import { Textarea } from '@/components/ui/textarea';
+import { JsonEditor } from './components/json-editor';
 import './json.css'; // 引入样式文件
 
 export default function JsonTool() {
@@ -33,22 +33,7 @@ export default function JsonTool() {
     <div className="flex h-screen bg-gray-50">
       <div className="flex-1 p-8 overflow-auto border-r border-gray-200 bg-white">
         <div className="textarea-container">
-          <div className="line-numbers" ref={lineNumbersRef}>
-            {lines.map((_, index) => (
-              <div key={index} className="line-number">
-                {index + 1}
-              </div>
-            ))}
-          </div>
-          <Textarea
-            value={input}
-            ref={textareaRef}
-            onChange={(e) => handleFormat(e.target.value)}
-            onScroll={handleScroll}
-            className="text-area"
-            placeholder="Enter JSON here"
-            style={{ whiteSpace: 'pre-wrap', height: '100vh' }} // 处理换行
-          />
+          <JsonEditor value={input} onChange={handleFormat} error={null} />
         </div>
       </div>
       <div className="flex-1 p-8 overflow-auto border-r border-gray-200 bg-white">

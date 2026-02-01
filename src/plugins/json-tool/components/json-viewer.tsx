@@ -84,7 +84,7 @@ export function JsonViewer({ data, error, viewMode, indentSize }: JsonViewerProp
               readOnly: true,
               minimap: { enabled: false },
               fontSize: 14,
-              fontFamily: "'Geist Mono', monospace",
+              fontFamily: 'consolas, menlo, monaco, "Ubuntu Mono", source-code-pro, monospace',
               lineHeight: 24,
               tabSize: indentSize === 'tab' ? 4 : indentSize,
               automaticLayout: true,

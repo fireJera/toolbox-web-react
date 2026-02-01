@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import Editor, { type OnMount, type Monaco } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import { AlertCircle, Loader2 } from 'lucide-react';
-// import { useTheme } from 'next-themes';
+import { useTheme } from 'next-themes';
 
 interface JsonEditorProps {
   value: string;
@@ -13,6 +13,7 @@ interface JsonEditorProps {
 export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const monacoRef = useRef<Monaco | null>(null);
+  const { resolvedTheme } = useTheme();
   const [lineCount, setLineCount] = useState(1);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
         'editor.foreground': '#cdd6f4',
         'editorLineNumber.foreground': '#585b70',
         'editorLineNumber.activeForeground': '#f5a97f',
-        'editor.lineHighlightBackground': '#313244',
+        'editor.lineHighlightBackground': '#4a4d5a',
         'editor.selectionBackground': '#585b70',
         'editorCursor.foreground': '#f5a97f',
         'editorIndentGuide.background': '#585b70',
@@ -62,7 +63,7 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
         'editor.foreground': '#24292e',
         'editorLineNumber.foreground': '#a0a0a0',
         'editorLineNumber.activeForeground': '#24292e',
-        'editor.lineHighlightBackground': '#f6f8fa',
+        'editor.lineHighlightBackground': '#e1e4e8',
         'editor.selectionBackground': '#c8e1ff',
         'editorCursor.foreground': '#24292e',
         'editorIndentGuide.background': '#f0f0f0',
@@ -70,17 +71,16 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
       },
     });
 
-    monaco.editor.setTheme('json-light');
+    monaco.editor.setTheme(resolvedTheme === 'dark' ? 'json-dark' : 'json-light');
 
     editor.focus();
   };
 
-  // useEffect(() => {
-  //   if (monacoRef.current) {
-  //     const theme = 'json-light'; // Replace with actual theme logic if needed
-  //     monacoRef.current.editor.setTheme(theme);
-  //   }
-  // }, [/* theme */]);
+  useEffect(() => {
+    if (monacoRef.current) {
+      monacoRef.current.editor.setTheme(resolvedTheme === 'dark' ? 'json-dark' : 'json-light');
+    }
+  }, [resolvedTheme]);
 
   return (
     <div className="flex h-full flex-col">
@@ -125,7 +125,7 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
             folding: true,
             lineDecorationsWidth: 10,
             lineNumbersMinChars: 4,
-            renderLineHighlight: 'line',
+            renderLineHighlight: 'all',
             scrollbar: {
               vertical: 'auto',
               horizontal: 'auto',
@@ -156,4 +156,3 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
     </div>
   );
 }
-// const { theme } = useTheme();

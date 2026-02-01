@@ -24,7 +24,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-white border-b border-[#e5e7eb] sticky top-0 z-50">
+    <header className="bg-white dark:bg-[#1a1d29] border-b border-[#e5e7eb] dark:border-[#374151] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Navigation */}
@@ -33,7 +33,7 @@ export function Header() {
             <nav className="hidden md:flex items-center space-x-8">
               <a
                 href="/"
-                className={`text-[#6b7280] hover:text-[#3b82f6] transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
+                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
                   location.pathname === '/'
                     ? 'after:scale-x-100 text-[#3b82f6]'
                     : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
@@ -43,7 +43,7 @@ export function Header() {
               </a>
               <a
                 href="/tools"
-                className={`text-[#6b7280] hover:text-[#3b82f6] transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
+                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
                   location.pathname === '/tools'
                     ? 'after:scale-x-100 text-[#3b82f6]'
                     : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
@@ -53,7 +53,7 @@ export function Header() {
               </a>
               <a
                 href="/docs"
-                className={`text-[#6b7280] hover:text-[#3b82f6] transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
+                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
                   location.pathname === '/docs'
                     ? 'after:scale-x-100 text-[#3b82f6]'
                     : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
@@ -63,7 +63,7 @@ export function Header() {
               </a>
               <a
                 href="/api"
-                className={`text-[#6b7280] hover:text-[#3b82f6] transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
+                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
                   location.pathname === '/api'
                     ? 'after:scale-x-100 text-[#3b82f6]'
                     : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
@@ -81,21 +81,21 @@ export function Header() {
               <input
                 type="text"
                 placeholder="搜索工具..."
-                className="pl-10 pr-4 py-2 border border-[#d1d5db] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent w-48 lg:w-64"
+                className="pl-10 pr-4 py-2 border border-[#d1d5db] dark:border-[#4b5563] dark:bg-[#1f2937] dark:text-white dark:placeholder-[#9ca3af] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent w-48 lg:w-64"
               />
             </div>
             <button
               onClick={toggleTheme}
-              className="h-9 w-9 rounded-full bg-[#e5e7eb] flex items-center justify-center hover:bg-[#f3f4f6] transition-colors"
+              className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] transition-colors"
             >
               {mounted && isDark ? (
-                <Sun className="h-5 w-5 text-[#6b7280]" />
+                <Sun className="h-5 w-5 text-[#6b7280] dark:text-white" />
               ) : (
                 <Moon className="h-5 w-5 text-[#6b7280]" />
               )}
             </button>
-            <div className="h-9 w-9 rounded-full bg-[#e5e7eb] flex items-center justify-center hover:bg-[#f3f4f6] transition-colors cursor-pointer">
-              <User className="h-5 w-5 text-[#6b7280]" />
+            <div className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] transition-colors cursor-pointer">
+              <User className="h-5 w-5 text-[#6b7280] dark:text-white" />
             </div>
           </div>
         </div>

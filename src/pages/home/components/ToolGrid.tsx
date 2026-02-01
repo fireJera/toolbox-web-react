@@ -65,7 +65,7 @@ export function ToolGrid() {
 
   return (
     <section id="tools" className="mb-12">
-      <h2 className="text-2xl font-bold text-[#1f2937] mb-6">热门工具</h2>
+      <h2 className="text-2xl font-bold text-[#1f2937] dark:text-white mb-6">热门工具</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {tools.map((tool, index) => (
           <ToolCard

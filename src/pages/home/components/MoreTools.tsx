@@ -43,7 +43,7 @@ export function MoreTools() {
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-[#1f2937] mb-6">更多工具</h2>
+      <h2 className="text-2xl font-bold text-[#1f2937] dark:text-white mb-6">更多工具</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-8">
         {tools.map((tool, index) => (
           <ToolCard
@@ -56,7 +56,7 @@ export function MoreTools() {
         ))}
       </div>
       <div className="text-center">
-        <button className="px-8 py-3 bg-[#3b82f6] text-white rounded-lg font-medium hover:bg-[#2563eb] transition-colors">
+        <button className="px-8 py-3 bg-[#3b82f6] dark:bg-[#3b82f6] text-white rounded-lg font-medium hover:bg-[#2563eb] dark:hover:bg-[#2563eb] transition-colors">
           查看所有工具
         </button>
       </div>

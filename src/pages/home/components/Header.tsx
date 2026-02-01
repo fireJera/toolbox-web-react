@@ -5,6 +5,20 @@ import { ThemeToggle } from './theme-toggle';
 export function Header() {
   const location = useLocation();
 
+  const navItems = [
+    { href: '/', label: '首页' },
+    { href: '/tools', label: '工具' },
+    { href: '/docs', label: '文档' },
+    { href: '/api', label: 'API' },
+  ];
+
+  const getLinkClassName = (path: string) =>
+    `text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
+      location.pathname === path
+        ? 'after:scale-x-100 text-[#3b82f6]'
+        : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
+    }`;
+
   return (
     <header className="bg-white dark:bg-[#1a1d29] border-b border-[#e5e7eb] dark:border-[#374151] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,46 +27,11 @@ export function Header() {
           <div className="flex items-center space-x-8">
             <span className="text-2xl font-bold text-[#3b82f6]">DevTools</span>
             <nav className="hidden md:flex items-center space-x-8">
-              <a
-                href="/"
-                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
-                  location.pathname === '/'
-                    ? 'after:scale-x-100 text-[#3b82f6]'
-                    : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
-                }`}
-              >
-                首页
-              </a>
-              <a
-                href="/tools"
-                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
-                  location.pathname === '/tools'
-                    ? 'after:scale-x-100 text-[#3b82f6]'
-                    : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
-                }`}
-              >
-                工具
-              </a>
-              <a
-                href="/docs"
-                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
-                  location.pathname === '/docs'
-                    ? 'after:scale-x-100 text-[#3b82f6]'
-                    : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
-                }`}
-              >
-                文档
-              </a>
-              <a
-                href="/api"
-                className={`text-[#6b7280] dark:text-[#a0a0a0] hover:text-[#3b82f6] dark:hover:text-white transition-colors font-medium relative after:content-[''] after:absolute after:left-0 after:-bottom-[5px] after:w-full after:h-0.5 after:bg-[#3b82f6] after:transition-transform ${
-                  location.pathname === '/api'
-                    ? 'after:scale-x-100 text-[#3b82f6]'
-                    : 'after:scale-x-0 after:origin-left hover:after:scale-x-100'
-                }`}
-              >
-                API
-              </a>
+              {navItems.map((item) => (
+                <a key={item.href} href={item.href} className={getLinkClassName(item.href)}>
+                  {item.label}
+                </a>
+              ))}
             </nav>
           </div>
 

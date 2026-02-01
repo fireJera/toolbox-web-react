@@ -2,6 +2,6 @@ import { toolRegistry } from './toolRegistry';
 
 const modules = import.meta.glob('@/plugins/**/index.{ts,tsx}', { eager: true });
 
-Object.values(modules).forEach((module) => {
+Object.values(modules).forEach((module: any) => {
   toolRegistry.register(module.default);
 });

@@ -1,4 +1,4 @@
-import { ToolPlugin } from '@/core/types/tool';
+import type { ToolPlugin } from '@/core/types/tool';
 import { meta } from './meta';
 import JsonTool from './JsonTool';
 

@@ -2,7 +2,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ToolGrid } from './components/ToolGrid';
 import { RecommendedTools } from './components/RecommendedTools';
-import { MoreTools } from './components/MoreTools';
+// import { MoreTools } from './components/MoreTools';
 import { Footer } from './components/Footer';
 
 export function Home() {
@@ -13,7 +13,7 @@ export function Home() {
         <Hero />
         <ToolGrid />
         <RecommendedTools />
-        <MoreTools />
+        {/* <MoreTools /> */}
       </main>
       <Footer />
     </div>

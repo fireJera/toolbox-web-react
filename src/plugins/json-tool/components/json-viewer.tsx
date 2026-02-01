@@ -95,7 +95,7 @@ export function JsonViewer({ data, error, viewMode, indentSize }: JsonViewerProp
               folding: true,
               lineDecorationsWidth: 10,
               lineNumbersMinChars: 4,
-              renderLineHighlight: 'none',
+              renderLineHighlight: 'all',
               scrollbar: {
                 vertical: 'auto',
                 horizontal: 'auto',

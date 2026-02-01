@@ -1,6 +1,6 @@
 import type { ToolPlugin } from '@/core/types/tool';
 import { meta } from './meta';
-import JsonTool from './JsonTool';
+import JsonTool from './json-tool';
 
 const plugin: ToolPlugin = {
   meta,

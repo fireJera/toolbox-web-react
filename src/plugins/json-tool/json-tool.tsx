@@ -116,7 +116,7 @@ export default function JsonTool() {
   );
 
   return (
-    <div className="flex h-screen flex-col bg-background">
+    <div className="flex h-[calc(100vh-385px)] flex-col bg-background">
       <Header
         viewMode={viewMode}
         setViewMode={setViewMode}
@@ -132,7 +132,7 @@ export default function JsonTool() {
         setShowHistory={setShowHistory}
         isValid={parseError === null && jsonInput.trim() !== ''}
       />
-      <div className="flex flex-1 overflow-hidde">
+      <div className="flex h-[calc(100vh-340px)] flex-1 overflow-hidde">
         {showHistory && (
           <HistorySidebar
             history={history}

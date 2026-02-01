@@ -113,7 +113,7 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
           options={{
             minimap: { enabled: false },
             fontSize: 14,
-            fontFamily: "'Geist Mono', monospace",
+            fontFamily: 'consolas, menlo, monaco, "Ubuntu Mono", source-code-pro, monospace',
             lineHeight: 24,
             tabSize: 2,
             insertSpaces: true,

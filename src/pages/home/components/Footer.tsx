@@ -21,7 +21,12 @@ function LinkList({ links }: { links: LinkItem[] }) {
         const target = typeof link === 'string' ? undefined : link.target;
         return (
           <li key={index}>
-            <a href={href} className={styles.link} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
+            <a
+              href={href}
+              className={styles.link}
+              target={target}
+              rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+            >
               {name}
             </a>
           </li>
@@ -39,17 +44,19 @@ const socialLinks = [
 
 // 链接栏目配置
 const linkSections = [
-  {
-    title: '工具分类',
-    links: ['编码转换', '加密安全', '图像处理', '数据处理'],
-  },
-  {
-    title: '支持',
-    links: ['文档中心', 'API 接口', '常见问题', '联系我们'],
-  },
+  // {
+  //   title: '工具分类',
+  //   links: ['编码转换', '加密安全', '图像处理', '数据处理'],
+  // },
+  // {
+  //   title: '支持',
+  //   links: ['文档中心', 'API 接口', '常见问题', '联系我们'],
+  // },
   {
     title: '社区',
-    links: [{ name: 'GitHub', href: 'https://github.com/fireJera/toolbox-web-react', target: '_blank' }],
+    links: [
+      { name: 'GitHub', href: 'https://github.com/fireJera/toolbox-web-react', target: '_blank' },
+    ],
   },
 ];
 

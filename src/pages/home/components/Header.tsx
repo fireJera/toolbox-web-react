@@ -1,27 +1,9 @@
-import { Search, User, Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Search, User } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { ThemeToggle } from './theme-toggle';
 
 export function Header() {
   const location = useLocation();
-  const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-theme: dark)').matches;
-    const shouldBeDark = saved === 'dark' || (!saved && prefersDark);
-    setIsDark(shouldBeDark);
-    document.documentElement.classList.toggle('dark', shouldBeDark);
-  }, []);
-
-  const toggleTheme = () => {
-    const newValue = !isDark;
-    setIsDark(newValue);
-    document.documentElement.classList.toggle('dark', newValue);
-    localStorage.setItem('theme', newValue ? 'dark' : 'light');
-  };
 
   return (
     <header className="bg-white dark:bg-[#1a1d29] border-b border-[#e5e7eb] dark:border-[#374151] sticky top-0 z-50">
@@ -84,16 +66,7 @@ export function Header() {
                 className="pl-10 pr-4 py-2 border border-[#d1d5db] dark:border-[#4b5563] dark:bg-[#1f2937] dark:text-white dark:placeholder-[#9ca3af] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent w-48 lg:w-64"
               />
             </div>
-            <button
-              onClick={toggleTheme}
-              className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] transition-colors"
-            >
-              {mounted && isDark ? (
-                <Sun className="h-5 w-5 text-[#6b7280] dark:text-white" />
-              ) : (
-                <Moon className="h-5 w-5 text-[#6b7280]" />
-              )}
-            </button>
+            <ThemeToggle />
             <div className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] flex items-center justify-center hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] transition-colors cursor-pointer">
               <User className="h-5 w-5 text-[#6b7280] dark:text-white" />
             </div>

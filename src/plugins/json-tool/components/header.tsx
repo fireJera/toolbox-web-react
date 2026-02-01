@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ThemeToggle } from './theme-toggle';
 import type { ViewMode, IndentSize } from '@/app/page';
 import {
   FileJson,
@@ -235,8 +234,6 @@ export function Header({
           <History className="h-4 w-4" />
           <span className="hidden sm:inline">History</span>
         </Button>
-
-        <ThemeToggle />
       </div>
     </header>
   );

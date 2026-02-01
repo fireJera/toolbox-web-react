@@ -24,19 +24,28 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="outline" size="sm" className="h-8 w-8 p-0 bg-transparent">
-        <Sun className="h-4 w-4" />
+      <Button
+        variant="outline"
+        size="icon"
+        className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] border-0 p-0"
+      >
+        <Sun className="h-5 w-5 text-[#6b7280] dark:text-white" />
       </Button>
     );
   }
+
   return (
     <Button
       variant="outline"
-      size="sm"
+      size="icon"
       onClick={toggleTheme}
-      className="h-8 w-8 p-0 bg-transparent"
+      className="h-9 w-9 rounded-full bg-[#e5e7eb] dark:bg-[#374151] hover:bg-[#f3f4f6] dark:hover:bg-[#4b5563] border-0 p-0"
     >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {isDark ? (
+        <Sun className="h-5 w-5 text-[#6b7280] dark:text-white" />
+      ) : (
+        <Moon className="h-5 w-5 text-[#6b7280]" />
+      )}
       <span className="sr-only">Toggle theme</span>
     </Button>
   );

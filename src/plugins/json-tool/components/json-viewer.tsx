@@ -8,15 +8,19 @@ import type { ViewMode, IndentSize } from '@/app/page';
 import { JsonTreeView } from './json-tree-view';
 import { JsonTableView } from './json-table-view';
 import { JsonTypeView } from './json-type-view';
+import { JsonViewerHeader } from './json-viewer-header';
+import '../json.css';
 
 interface JsonViewerProps {
   data: unknown;
   error: string | null;
   viewMode: ViewMode;
+  setViewMode: (mode: ViewMode) => void;
   indentSize: IndentSize;
+  onDataChange?: (data: unknown) => void;
 }
 
-export function JsonViewer({ data, error, viewMode, indentSize }: JsonViewerProps) {
+export function JsonViewer({ data, error, viewMode, setViewMode, indentSize, onDataChange }: JsonViewerProps) {
   const { resolvedTheme } = useTheme();
 
   const formattedJson = useMemo(() => {
@@ -62,7 +66,7 @@ export function JsonViewer({ data, error, viewMode, indentSize }: JsonViewerProp
 
     switch (viewMode) {
       case 'tree':
-        return <JsonTreeView data={data} />;
+        return <JsonTreeView key={JSON.stringify(data)} data={data} onDataChange={onDataChange} />;
       case 'table':
         return <JsonTableView data={data} />;
       case 'type':
@@ -120,11 +124,12 @@ export function JsonViewer({ data, error, viewMode, indentSize }: JsonViewerProp
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2">
+      {/* <div className="flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2">
         <span className="text-sm font-medium text-muted-foreground">
           Output ({viewMode.charAt(0).toUpperCase() + viewMode.slice(1)})
         </span>
-      </div>
+      </div> */}
+      <JsonViewerHeader viewMode={viewMode} setViewMode={setViewMode} />
       <div className="flex-1 overflow-hidden">{renderContent()}</div>
     </div>
   );

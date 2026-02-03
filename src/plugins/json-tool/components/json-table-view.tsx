@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 interface JsonTableViewProps {
   data: unknown;
@@ -10,7 +10,7 @@ function getValueType(value: unknown): string {
   return typeof value;
 }
 
-function renderValue(value: unknown): React.ReactNode {
+function renderValue(value: unknown): ReactNode {
   const valueType = getValueType(value);
   if (valueType === null) {
     return <span className="text-json-null">null</span>;
@@ -19,10 +19,10 @@ function renderValue(value: unknown): React.ReactNode {
     return <span className="text-json-boolean">{String(value)}</span>;
   }
   if (valueType === 'number') {
-    return <span className="text-json-number">{value}</span>;
+    return <span className="text-json-number">{String(value)}</span>;
   }
   if (valueType === 'string') {
-    return <span className="text-json-string">"{value}"</span>;
+    return <span className="text-json-string">"{String(value)}"</span>;
   }
   if (Array.isArray(value)) {
     return <span className="text-muted-foreground">Array({value.length})</span>;
@@ -150,8 +150,8 @@ function JsonTable({ data, level = 0 }: TableProps) {
     );
   }
 
-  if (typeof data !== 'object' || data === null) {
-    const entries = object.entries(data);
+  if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+    const entries = Object.entries(data);
 
     if (entries.length === 0) {
       return <span className="text-muted-foreground">Empty Object</span>;

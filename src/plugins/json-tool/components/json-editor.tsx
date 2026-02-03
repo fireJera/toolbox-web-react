@@ -1,16 +1,38 @@
 import { useRef, useEffect, useState } from 'react';
 import Editor, { type OnMount, type Monaco } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
+import { JsonEditorHeader } from './json-editor-header';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import type { IndentSize } from '@/plugins/json-tool/json-tool';
 
 interface JsonEditorProps {
   value: string;
+  indentSize: IndentSize;
+  setIndentSize: (size: IndentSize) => void;
+  onFormat: () => void;
+  onMinify: () => void;
+  onClear: () => void;
+  onCopy: () => void;
+  isEscape: boolean;
+  onEscapeToggle: () => void;
   onChange: (value: string) => void;
   error: string | null;
 }
 
-export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
+export function JsonEditor({
+  value,
+  indentSize,
+  setIndentSize,
+  onFormat,
+  onMinify,
+  onClear,
+  onCopy,
+  isEscape,
+  onEscapeToggle,
+  onChange,
+  error,
+}: JsonEditorProps) {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const monacoRef = useRef<Monaco | null>(null);
   const { resolvedTheme } = useTheme();
@@ -84,13 +106,16 @@ export function JsonEditor({ value, onChange, error }: JsonEditorProps) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-border bg-muted/50 px-4 py-2">
-        <span className="text-sm font-medium text-muted-foreground">Input</span>
-        <span className="text-xs text-muted-foreground">
-          {lineCount} line{lineCount !== 1 ? 's' : ''}
-        </span>
-      </div>
-
+      <JsonEditorHeader
+        indentSize={indentSize}
+        setIndentSize={setIndentSize}
+        onFormat={onFormat}
+        onMinify={onMinify}
+        onClear={onClear}
+        onCopy={onCopy}
+        isEscape={isEscape}
+        onEscapeToggle={onEscapeToggle}
+      />
       {error && (
         <div className="flex items-center gap-2 border-b border-red-200 bg-red-50 px-4 py-2 dark:border-red-900/50 dark:bg-red-900/20">
           <AlertCircle className="h-4 w-4 text-red-500" />

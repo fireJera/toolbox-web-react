@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import type { ViewMode, IndentSize } from '@/app/page';
+import type { ViewMode, IndentSize } from '@/plugins/json-tool/json-tool';
 import {
   FileJson,
   Download,
@@ -27,6 +27,7 @@ import {
   ChevronDown,
   Check,
   X,
+  CheckCheck,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -75,6 +76,13 @@ export function Header({
   isValid,
 }: HeaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    onCopy();
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -180,9 +188,9 @@ export function Header({
 
         <div className="h-4 w-px bg-border" />
 
-        <Button variant="outline" size="sm" onClick={onCopy} className="h-8 gap-1.5 bg-transparent">
-          <Copy className="h-4 w-4" />
-          <span className="hidden sm:inline">Copy</span>
+        <Button variant="outline" size="sm" onClick={handleCopy} className="h-8 gap-1.5 bg-transparent">
+          {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
         </Button>
 
         <input

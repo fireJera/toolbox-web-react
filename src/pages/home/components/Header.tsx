@@ -1,5 +1,6 @@
 // import { Search, User } from 'lucide-react';
 // import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ThemeToggle } from './theme-toggle';
 
 export function Header() {
@@ -25,7 +26,9 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Navigation */}
           <div className="flex items-center space-x-8">
-            <span className="text-2xl font-bold text-[#3b82f6]">DevTools</span>
+            <Link to="/" className="text-2xl font-bold text-[#3b82f6] hover:text-[#2563eb] dark:hover:text-[#60a5fa] transition-colors cursor-pointer">
+              DevTools
+            </Link>
             {/* <nav className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} className={getLinkClassName(item.href)}>

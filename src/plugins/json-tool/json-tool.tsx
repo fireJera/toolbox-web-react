@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { Header } from './components/header';
+// import { Header } from './components/header';
 import { JsonEditor } from './components/json-editor';
 import { JsonViewer } from './components/json-viewer';
 import { HistorySidebar } from './components/history-sidebar';
@@ -8,6 +8,7 @@ import type { HistoryItem } from './model/history-item';
 
 export type ViewMode = 'editor' | 'tree' | 'table' | 'type';
 export type IndentSize = 1 | 2 | 3 | 4 | 'tab';
+export type CodeLanguage = 'typescript' | 'go' | 'rust' | 'python' | 'java' | 'csharp' | 'cpp' | 'swift' | 'kotlin' | 'objc';
 
 const sampleJson = `{
   "name": "JSON Formatter",
@@ -33,6 +34,7 @@ export default function JsonTool() {
   const [indentSize, setIndentSize] = useState<IndentSize>(2);
   const [showHistory, setShowHistory] = useState(false);
   const [isEscape, setIsEscape] = useState(false);
+  const [codeLanguage, setCodeLanguage] = useState<CodeLanguage>('typescript');
   const isManualEditRef = useRef(false);
   const { history, addToHistory, clearHistory, deleteHistoryItem, loadFromHistory } =
     useJsonHistory();
@@ -41,6 +43,14 @@ export default function JsonTool() {
   const [parseError, setParseError] = useState<string | null>(null);
 
   const parseJson = useCallback((input: string, escape: boolean) => {
+    // 检查空输入或纯空白
+    const trimmed = input.trim();
+    if (!trimmed) {
+      setParesedJson(null);
+      setParseError(null);
+      return { success: true, data: null };
+    }
+
     try {
       // 如果是转义状态，先取消转义再解析
       let parseInput = input;
@@ -178,15 +188,18 @@ export default function JsonTool() {
   }, []);
 
   // 处理树视图节点删除
-  const handleTreeNodeDelete = useCallback((newData: unknown) => {
-    const formatted = JSON.stringify(newData, null, indentSize === 'tab' ? '\t' : indentSize);
-    setJsonInput(formatted);
-    addToHistory(formatted);
-  }, [indentSize, addToHistory]);
+  const handleTreeNodeDelete = useCallback(
+    (newData: unknown) => {
+      const formatted = JSON.stringify(newData, null, indentSize === 'tab' ? '\t' : indentSize);
+      setJsonInput(formatted);
+      addToHistory(formatted);
+    },
+    [indentSize, addToHistory],
+  );
 
   return (
-    <div className="flex h-[calc(100vh-385px)] flex-col bg-background">
-      <Header
+    <div className="flex h-[calc(100vh-353px)] flex-col bg-background">
+      {/* <Header
         viewMode={viewMode}
         setViewMode={setViewMode}
         indentSize={indentSize}
@@ -200,7 +213,7 @@ export default function JsonTool() {
         showHistory={showHistory}
         setShowHistory={setShowHistory}
         isValid={parseError === null && jsonInput.trim() !== ''}
-      />
+      /> */}
       <div className="flex h-[calc(100vh-340px)] flex-1 overflow-hidde">
         {showHistory && (
           <HistorySidebar
@@ -211,7 +224,7 @@ export default function JsonTool() {
             onClose={() => setShowHistory(false)}
           />
         )}
-        <div className="flex flex-1 gap-0 divide-x divide-border overflow-hidden">
+        <div className="flex flex-1 gap-0 divide-x divide-gray-200 overflow-hidden dark:divide-gray-700">
           <div className="flex-1 overflow-hidden">
             <JsonEditor
               value={jsonInput}
@@ -235,6 +248,8 @@ export default function JsonTool() {
               setViewMode={setViewMode}
               indentSize={indentSize}
               onDataChange={handleTreeNodeDelete}
+              codeLanguage={codeLanguage}
+              setCodeLanguage={setCodeLanguage}
             />
           </div>
         </div>

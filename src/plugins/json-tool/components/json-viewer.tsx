@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import Editor from '@monaco-editor/react';
 import { AlertCircle, FileJson, Loader2 } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import type { ViewMode, IndentSize } from '@/app/page';
+import type { ViewMode, IndentSize, CodeLanguage } from '@/plugins/json-tool/json-tool';
 import { JsonTreeView } from './json-tree-view';
 import { JsonTableView } from './json-table-view';
 import { JsonTypeView } from './json-type-view';
@@ -17,10 +17,12 @@ interface JsonViewerProps {
   viewMode: ViewMode;
   setViewMode: (mode: ViewMode) => void;
   indentSize: IndentSize;
+  codeLanguage: CodeLanguage;
+  setCodeLanguage: (language: CodeLanguage) => void;
   onDataChange?: (data: unknown) => void;
 }
 
-export function JsonViewer({ data, error, viewMode, setViewMode, indentSize, onDataChange }: JsonViewerProps) {
+export function JsonViewer({ data, error, viewMode, setViewMode, indentSize, codeLanguage, setCodeLanguage, onDataChange }: JsonViewerProps) {
   const { resolvedTheme } = useTheme();
 
   const formattedJson = useMemo(() => {
@@ -70,7 +72,7 @@ export function JsonViewer({ data, error, viewMode, setViewMode, indentSize, onD
       case 'table':
         return <JsonTableView data={data} />;
       case 'type':
-        return <JsonTypeView data={data} indentSize={indentSize} />;
+        return <JsonTypeView data={data} indentSize={indentSize} codeLanguage={codeLanguage} />;
       case 'editor':
       default:
         return (
@@ -129,7 +131,7 @@ export function JsonViewer({ data, error, viewMode, setViewMode, indentSize, onD
           Output ({viewMode.charAt(0).toUpperCase() + viewMode.slice(1)})
         </span>
       </div> */}
-      <JsonViewerHeader viewMode={viewMode} setViewMode={setViewMode} />
+      <JsonViewerHeader viewMode={viewMode} setViewMode={setViewMode} codeLanguage={codeLanguage} setCodeLanguage={setCodeLanguage} />
       <div className="flex-1 overflow-hidden">{renderContent()}</div>
     </div>
   );

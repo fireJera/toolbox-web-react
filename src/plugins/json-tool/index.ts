@@ -1,10 +1,10 @@
+import React from 'react';
 import type { ToolPlugin } from '@/core/types/tool';
 import { meta } from './meta';
-import JsonTool from './json-tool';
 
 const plugin: ToolPlugin = {
   meta,
-  component: JsonTool,
+  component: React.lazy(() => import('./json-tool')),
 };
 
 export default plugin;

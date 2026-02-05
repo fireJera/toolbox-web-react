@@ -1,0 +1,17 @@
+# Changelog
+
+## [Unreleased] - 2026-02-05
+
+### Changed
+- **Performance Optimization (Lazy Loading)**:
+  - Refactored tool plugins (JSON Tool, Base64 Tool) to use `React.lazy` and `Suspense`.
+  - Tools are now loaded on-demand when the route is accessed, significantly reducing the initial bundle size and speeding up the homepage load time.
+  - Added a loading spinner (`Loader2`) fallback during tool transitions.
+
+- **Monaco Editor Localization**:
+  - Replaced CDN-based Monaco Editor (jsdelivr) with the local `monaco-editor` npm package.
+  - Implemented a custom Monaco Environment configuration (`src/lib/monaco-setup.ts`) using Vite's web worker import syntax (`?worker`) to serve workers locally.
+  - Moved Monaco initialization from the global `main.tsx` to the specific `json-tool.tsx` component. This ensures the heavy editor engine is only initialized when the JSON tool is actually used.
+
+### Added
+- Created `src/lib/monaco-setup.ts` to handle local Monaco worker configuration.

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 // import { Header } from './components/header';
+import '@/lib/monaco-setup';
 import { JsonEditor } from './components/json-editor';
 import { JsonViewer } from './components/json-viewer';
 import { HistorySidebar } from './components/history-sidebar';

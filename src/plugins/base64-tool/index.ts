@@ -1,10 +1,10 @@
+import React from 'react';
 import type { ToolPlugin } from '@/core/types/tool';
 import { meta } from './meta';
-import { Base64FormatterCard } from './components/base64-formatter-card';
 
 const plugin: ToolPlugin = {
   meta,
-  component: Base64FormatterCard,
+  component: React.lazy(() => import('./components/base64-formatter-card').then(m => ({ default: m.Base64FormatterCard }))),
 };
 
 export default plugin;

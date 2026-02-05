@@ -42,15 +42,15 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -71,5 +71,9 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```
+
+在/src/plugins/json-too/components/json-editor.tsx 这个文件中用到 monaco-editor/react
+在浏览器中依赖了好几个 cdn 的文件，类似于这样https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/assets/json.worker
+-DKiEKt88.js 加载比较慢，我想把 monaco-editor 放到本地，这是它的 github 地址https://github.com/suren-atoyan/monaco-react

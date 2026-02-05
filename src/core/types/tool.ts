@@ -22,5 +22,6 @@ export interface ToolData {
 
 export interface ToolPlugin {
   meta: ToolMeta;
-  component: React.FC;
+  component: React.ComponentType<any>;
+  load?: () => Promise<any>;
 }

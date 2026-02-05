@@ -15,3 +15,11 @@
 
 ### Added
 - Created `src/lib/monaco-setup.ts` to handle local Monaco worker configuration.
+- **Intelligent Preloading**:
+  - Added an automatic preload mechanism that fetches all tool resources 2 seconds after the homepage loads.
+  - Implemented mouse-hover preloading on tool cards (`ToolCard.tsx`) to trigger resource fetching before the user clicks.
+
+### Optimized
+- **Monaco Loading Strategy**:
+  - Implemented static import for `monaco-setup` within the JSON tool. This ensures Monaco resources are fetched in parallel with the tool's code when accessing the route, minimizing the "pop-in" effect of the editor.
+  - Configured Vite `manualChunks` to separate `monaco-editor` into a dedicated cacheable bundle for optimal HTTP/2 loading.

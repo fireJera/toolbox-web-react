@@ -1,14 +1,10 @@
 import { ToolCard } from './ToolCard';
-import {
-  Braces,
-  Lock,
-  Link as LinkIcon,
-  Hash,
-  Palette,
-  Clock,
-  Image as ImageIcon,
-  Shield,
-} from 'lucide-react';
+import { Braces, Palette, Clock } from 'lucide-react';
+//  Image as ImageIcon,
+//   Shield,
+//     Lock,
+//   Link as LinkIcon,
+//   Hash,
 
 export function ToolGrid() {
   const tools = [

@@ -54,7 +54,7 @@ async function addHistoryItem(item: HistoryItem): Promise<void> {
     const request = store.add(item);
 
     request.onerror = () => reject(request.error);
-    request.onsuccess = resolve();
+    request.onsuccess = () => resolve();
   });
 }
 
@@ -66,7 +66,7 @@ async function deleteHistoryItem(id: string): Promise<void> {
     const request = store.delete(id);
 
     request.onerror = () => reject(request.error);
-    request.onsuccess = resolve();
+    request.onsuccess = () => resolve();
   });
 }
 
@@ -78,7 +78,7 @@ async function clearAllHistory(): Promise<void> {
     const request = store.clear();
 
     request.onerror = () => reject(request.error);
-    request.onsuccess = resolve();
+    request.onsuccess = () => resolve();
   });
 }
 

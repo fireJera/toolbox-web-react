@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import Editor, { type OnMount, type Monaco } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import { JsonEditorHeader } from './json-editor-header';
@@ -36,12 +36,12 @@ export function JsonEditor({
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const monacoRef = useRef<Monaco | null>(null);
   const { resolvedTheme } = useTheme();
-  const [lineCount, setLineCount] = useState(1);
+  // const [lineCount, setLineCount] = useState(1);
 
-  useEffect(() => {
-    const lines = value.split('\n').length;
-    setLineCount(lines);
-  }, [value]);
+  // useEffect(() => {
+  //   const lines = value.split('\n').length;
+  //   setLineCount(lines);
+  // }, [value]);
 
   const handleEditorDidMount: OnMount = (editor, monaco) => {
     editorRef.current = editor;

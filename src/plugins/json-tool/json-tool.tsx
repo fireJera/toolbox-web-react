@@ -9,7 +9,17 @@ import type { HistoryItem } from './model/history-item';
 
 export type ViewMode = 'editor' | 'tree' | 'table' | 'type';
 export type IndentSize = 1 | 2 | 3 | 4 | 'tab';
-export type CodeLanguage = 'typescript' | 'go' | 'rust' | 'python' | 'java' | 'csharp' | 'cpp' | 'swift' | 'kotlin' | 'objc';
+export type CodeLanguage =
+  | 'typescript'
+  | 'go'
+  | 'rust'
+  | 'python'
+  | 'java'
+  | 'csharp'
+  | 'cpp'
+  | 'swift'
+  | 'kotlin'
+  | 'objc';
 
 const sampleJson = `{
   "name": "JSON Formatter",
@@ -150,29 +160,29 @@ export default function JsonTool() {
     await navigator.clipboard.writeText(jsonInput);
   }, [jsonInput]);
 
-  const handleDownload = useCallback(() => {
-    const blob = new Blob([jsonInput], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'data.json';
-    document.body.append(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, [jsonInput]);
+  // const handleDownload = useCallback(() => {
+  //   const blob = new Blob([jsonInput], { type: 'application/json' });
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = 'data.json';
+  //   document.body.append(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  //   URL.revokeObjectURL(url);
+  // }, [jsonInput]);
 
-  const handleUpload = useCallback(
-    (content: string) => {
-      setJsonInput(content);
-      setIsEscape(false); // 上传新内容时重置转义状态
-      const result = parseJson(content, false);
-      if (result.success) {
-        addToHistory(content);
-      }
-    },
-    [parseJson, addToHistory],
-  );
+  // const handleUpload = useCallback(
+  //   (content: string) => {
+  //     setJsonInput(content);
+  //     setIsEscape(false); // 上传新内容时重置转义状态
+  //     const result = parseJson(content, false);
+  //     if (result.success) {
+  //       addToHistory(content);
+  //     }
+  //   },
+  //   [parseJson, addToHistory],
+  // );
 
   const handleLoadFromHistory = useCallback(
     (item: HistoryItem) => {

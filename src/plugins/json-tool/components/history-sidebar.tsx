@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { X, Trash2, Clock } from 'lucide-react';
-import type { HistoryItem } from '@/app/page';
+import type { HistoryItem } from '@/plugins/json-tool/model/history-item';
 
 interface HistorySidebarProps {
   history: HistoryItem[];

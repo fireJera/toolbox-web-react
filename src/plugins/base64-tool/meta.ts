@@ -1,4 +1,4 @@
-import { ToolMeta } from '@/core/types/tool';
+import type { ToolMeta } from '@/core/types/tool';
 
 export const meta: ToolMeta = {
   id: 'base64-tool',

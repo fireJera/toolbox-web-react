@@ -9,15 +9,21 @@ steps:
   - name: build
     image: node:22-alpine
     pull: if-no-exits
-    enviroment:
+    environment:
       GIT_TAG: ${DRONE_TAG:latest}
       MODE: release
+      NODE_OPTIONS: --max-old-space-size=1536
     volumes:
       - name: dist-volume
         path: /dist
     commands:
       - chmod +x build.sh
       - ./build.sh
+    resources:
+      limits:
+        memory: 2048Mi
+      requests:
+        memory: 1536Mi
 
 volumes:
   - name: dist-volume

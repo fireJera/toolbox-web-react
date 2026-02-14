@@ -1,4 +1,4 @@
-name: Deploy Frontend Project 1
+name: Deploy Frontend toolbox-web-react
 
 on:
   push:
@@ -50,3 +50,15 @@ jobs:
             cd /home/deploy/projects
             docker compose restart nginx
             echo "Deployment completed at $(date)"
+
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "SSH connection successful!"
+            whoami
+            pwd

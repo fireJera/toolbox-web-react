@@ -27,17 +27,26 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Debug Secrets
+        run: |
+          echo "Checking secrets..."
+          echo "SSH_HOST is set: ${{ secrets.SSH_HOST != '' }}"
+          echo "SSH_USER is set: ${{ secrets.SSH_USER != '' }}"
+          echo "SSH_PORT is set: ${{ secrets.SSH_PORT != '' }}"
+          echo "SSH_PRIVATE_KEY length: ${{ secrets.SSH_PRIVATE_KEY != '' && '***' }}"
+
       - name: Test SSH connection
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           script: |
             echo "SSH connection successful!"
             whoami
             pwd
+          debug: true
 
       - name: Deploy to server
         uses: appleboy/scp-action@v0.1.7

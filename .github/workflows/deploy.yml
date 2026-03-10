@@ -56,7 +56,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: 'dist/*'
-          target: '/home/deploy/projects/web-projects/toolbox-web-react/'
+          target: '/home/deploy/projects/web-projects/toolbox-web-react/dist'
           strip_components: 1
           rm: true
 
